@@ -67,6 +67,29 @@ public class AbstractDAO
         }
         return id;
     }
+     public static boolean persist(Object object)
+     {
+         boolean inserto = false;
+         Session sessionProvisoria = conectar();
+         try
+         {
+            sessionProvisoria.beginTransaction();
+            sessionProvisoria.persist(object);
+            sessionProvisoria.getTransaction().commit();
+            inserto = true;
+            desconectar(sessionProvisoria);
+         } 
+         catch (Exception e)
+         {
+            sessionProvisoria.getTransaction().rollback();
+            desconectar(sessionProvisoria);
+            e.printStackTrace();
+            
+            System.out.println("ERROR: AbstractDAO -> Persit: " + object);
+         }
+
+         return inserto; 
+     }
     public static ArrayList<Object> findAll(Class clase)
     {
         ArrayList<Object> arrRespuesta = new ArrayList<Object>();

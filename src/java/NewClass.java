@@ -30,15 +30,16 @@ public class NewClass
 
         System.out.println( usuario.toString() );
         
-        Session sesion = HibernateUtil.getSessionFactory().openSession();
-        sesion.beginTransaction();
-        sesion.persist(usuario);
-        sesion.getTransaction().commit();
+//        Session sesion = HibernateUtil.getSessionFactory().openSession();
+//        sesion.beginTransaction();
+//        sesion.persist(usuario);
+//        sesion.getTransaction().commit();
         
-        /*
-        for(Usuario usuario : controller.Controller.findAllUsuarios())
+        daos.AbstractDAO.persist(usuario);
+        
+        for(Usuario usuarios : controller.Controller.findAllUsuarios())
         {
-            System.out.println("" + usuario.toString());
-        }*/
+            System.out.println("" + usuarios.toString());
+        }
     }
 }
